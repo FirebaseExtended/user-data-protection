@@ -1,11 +1,11 @@
+**This library is an early alpha release. Expect and please report bugs.**
+
 ##TOC
 - [Project Overview](#overview)
 - [How to use these functions in your Firebase app](#use)
 - [How to work on this project](#contribute)
 
 ## <a name="overview"></a> Project Overview
-
-
 
 Compliance with privacy regulations requires that developers ensure that a
 user's data is deleted when they delete their account.
@@ -158,7 +158,117 @@ library deletes the data and records the paths to the deleted data with a
 timestamp at `/wipeout/history/#WIPEOUT_UID` in the realtime database.
 
 
-## <a name="use"></a> How to include this in your project
+## <a name="use"></a> How to add this library to your existing Firebase project
+The following instructions are the instructions to install both the wipeout
+library and the demo app that lives in the `public/` folder.
+
+#### If you're creating a new project:
+- [ ] Consider structuring your data to make the Wipeout Rules easier to write
+and therefore more reliable. For example, nest personal data under the `$uid`
+login token, and store group data such as members of a chat room, or users that
+have stared a post, outside a user-specific key.
+- [ ] Initialize Firebase Functions (instructions [here]()).
+
+Then Continue with the rules for existing projects.
+
+#### To add this to existing projects:
+- [ ] And add this to your `functions/index.js` file:
+
+  ```js
+  'use strict';
+
+  const admin = require('firebase-admin');
+
+  admin.initializeApp(functions.config().firebase);
+  const wipeout = require('./wipeout');
+
+  const WIPEOUT_CONFIG = {
+      'credential': admin.credential.applicationDefault(),
+      'db': admin.database(),
+      'serverValue': admin.database.ServerValue,
+      'users': functions.auth.user(),
+      'DB_URL': functions.config().firebase.databaseURL,
+    };
+
+  wipeout.initialize(WIPEOUT_CONFIG);
+
+  /** expose cleanupUserDat as Cloud Function */
+  exports.cleanupUserData = wipeout.cleanupUserData();
+
+  /** expose showWipeoutConfig as Cloud Function */
+  exports.showWipeoutConfig = wipeout.showWipeoutConfig();
+
+  /** Cloud Function that adds demo data to app for a user. */
+  exports.addDataDemo = functions.https.onRequest((req, res) => {
+    if (req.method === 'POST') {
+      const body = JSON.parse(req.body);
+      if (typeof body.ref === 'undefined' || typeof body.content !== 'object') {
+        return Promise.reject('Needs ref and content field to add demo data');
+      }
+      return admin.database().ref(body.ref).set(body.content)
+          .then(() => res.send('data added'));
+    }
+  });
+  ```
+- [ ] Add these dependencies to the `functions/package.json` file
+  ```json
+  {
+    "name": "user-data-cleanup-functions",
+    "description": "Delete user data from the datastore upon account deletion",
+    "dependencies": {
+      "deepcopy": "^0.6.3",
+      "ejs": "^2.5.7",
+      "firebase-admin": "^4.1.1",
+      "firebase-functions": "^0.5.1",
+      "jsep": "^0.3.0",
+      "request": "^2.81.0",
+      "request-promise": "^4.2.1",
+      "strip-json-comments": "^2.0.1"
+    },
+    "scripts": {
+      "test": "NODE_ENV=TEST mocha test/index_spec.js",
+      "start": "node wipeout_init.js"
+    },
+    "devDependencies": {
+      "chai": "<=3.5",
+      "chai-as-promised": "^6.0.0",
+      "mocha": "^3.4.2",
+      "sinon": "^2.3.2",
+      "sinon-stub-promise": "^4.0.0"
+    }
+  }
+  ```
+- [ ] Run `cd function; npm install; cd -` to install new modules into the
+  `node_modules` folder
+- [ ] Add the following to the `firebase.json` file:
+  ```json
+  {
+    "database": {
+      "rules": "database.rules.json"
+    },
+    "hosting": {
+      "public": "public",
+      "rewrites": [
+        {"source": "/addDataDemo", "function": "addDataDemo"}
+      ]
+    }
+  }
+  ```
+- [ ] Copy all the files in the `functions/` folder except `index.js`,
+  `package.json`, and `package-lock.json`:
+  - [ ] `access.js`
+  - [ ] `common.js`
+  - [ ] `eval_ref.js`
+  - [ ] `expression.js`
+  - [ ] `index.js`
+  - [ ] `parse_rule.js`
+  - [ ] `template_confirm.ejs`
+  - [ ] `template.ejs`
+  - [ ] `wipeout.js`
 
 
-## <a name="contribute"></a> How to work on this project
+- [ ] Copy the `public/` folder into the app
+
+- [ ] Deploy the new functions: `functions deploy`
+- [ ] Follow the instructions in the the command line to initialize and confirm
+      the wipeout rules

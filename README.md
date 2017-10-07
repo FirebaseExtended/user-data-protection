@@ -1,11 +1,17 @@
+**This is not an official Google product**
+
 **This library is an early alpha release. Expect and please report bugs.**
 
-##TOC
+See the [Function Samples](https://github.com/firebase/functions-samples)
+repository for history of this project and other function examples
+
+### Table of Contents
 - [Project Overview](#overview)
 - [How to use these functions in your Firebase app](#use)
 - [How to work on this project](#contribute)
 
-## <a name="overview"></a> Project Overview
+<a name="#overview"></a>
+## Project Overview
 
 Compliance with privacy regulations requires that developers ensure that a
 user's data is deleted when they delete their account.
@@ -32,14 +38,8 @@ delete the corresponding user data in the realtime database.
 This library also includes a simple [demo app](public) showing how the Function
 works.
 
-The instructions below explain how to *use* this library. If you want
-to *contribute* to the library, or are just curious about how it is
-built, please see the overview [Design Doc](doc/design.md), the
-detailed explanation of [Auto Rules
-Extraction](doc/auto_rules_extraction.md), and the [contribution
-guidelines](CONTRIBUTING.md)
-
-#### Implementation overview
+<a name="#overview"></a>
+### Implementation overview
 
 See [`functions/wipeout.js`](functions/wipeout.js) for the data cleanup code.
 
@@ -51,6 +51,10 @@ automatically according to `Wipeout Rules` that can either be
 doesn't exist or doesn't contain a valid configuration object,
 - inferred from the Realtime Database authorization Rules.
 
+As it is, the function to wipeout user data is only triggered when a user
+deletes their account, but it would be straightforward to add also trigger the
+function via an admin console, given a user id.
+
 Don't modify the `WIPEOUT_CONFIG` object in `functions/index.js` unless you know
 the code well.
 
@@ -61,7 +65,8 @@ Dependencies for this library are listed in
 [`functions/package.json`](functions/package.json).
 
 
-#### <a name="test/"> Deploy and test
+<a name="#test/">
+### Deploy and test
 
 This sample comes with a Function and web-based UI for testing the function.
 To configure it:
@@ -96,7 +101,9 @@ To configure it:
   the provided button. You can check at each step of the way if the data
   has been deleted using the Firebase console.
 
-#### Understanding the wipeout rules
+
+<a name="/wipeout_rules"></a>
+### Understanding the wipeout rules
 
 The path string can use variable `$WIPEOUT_UID` which will be replaced by UID of
 the deleted user account when triggered.
@@ -158,11 +165,13 @@ library deletes the data and records the paths to the deleted data with a
 timestamp at `/wipeout/history/#WIPEOUT_UID` in the realtime database.
 
 
-## <a name="use"></a> How to add this library to your existing Firebase project
+<a name="#use"></a>
+##  How to add this library to your existing Firebase project
 The following instructions are the instructions to install both the wipeout
 library and the demo app that lives in the `public/` folder.
 
-#### If you're creating a new project:
+<a name="add-to-new"></a>
+### If you're creating a new project:
 - [ ] Consider structuring your data to make the Wipeout Rules easier to write
 and therefore more reliable. For example, nest personal data under the `$uid`
 login token, and store group data such as members of a chat room, or users that
@@ -171,7 +180,8 @@ have stared a post, outside a user-specific key.
 
 Then Continue with the rules for existing projects.
 
-#### To add this to existing projects:
+<a name="existing"></a>
+### To add this to existing projects:
 - [ ] And add this to your `functions/index.js` file:
 
   ```js
@@ -272,3 +282,13 @@ Then Continue with the rules for existing projects.
 - [ ] Deploy the new functions: `functions deploy`
 - [ ] Follow the instructions in the the command line to initialize and confirm
       the wipeout rules
+
+## <a name="#contribute"></a> How to contribute
+
+If you'd like to  *contribute* to the library, or are just curious about how it
+is built, please see the overview [Design Doc](doc/design.md), the detailed
+explanation of [Auto Rules Extraction](doc/auto_rules_extraction.md).
+
+Before contributing, review the [contribution guidelines](CONTRIBUTING.md),
+including Code of Conduct it contains, and sign the Contributor License
+Agreement.

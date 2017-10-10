@@ -2,7 +2,6 @@
 
 We'd love for you to contribute to our source code and to make the Firebase Cloud Functions User Data Protection Library even better than it is today! Here are the guidelines we'd like you to follow:
 
- - [Code of Conduct](#coc)
  - [Question or Problem?](#question)
  - [Issues and Bugs](#issue)
  - [Feature Requests](#feature)
@@ -10,22 +9,10 @@ We'd love for you to contribute to our source code and to make the Firebase Clou
  - [Coding Rules](#rules)
  - [Signing the CLA](#cla)
 
-## <a name="coc"></a> Code of Conduct
-
-As contributors and maintainers of the Firebase Cloud Functions Templates Library project, we pledge to respect everyone who contributes by posting issues, updating documentation, submitting pull requests, providing feedback in comments, and any other activities.
-
-Communication through any of Firebase's channels (GitHub, StackOverflow, Google+, Twitter, etc.) must be constructive and never resort to personal attacks, trolling, public or private harassment, insults, or other unprofessional conduct.
-
-We promise to extend courtesy and respect to everyone involved in this project regardless of gender, gender identity, sexual orientation, disability, age, race, ethnicity, religion, or level of experience. We expect anyone contributing to the project to do the same.
-
-If any member of the community violates this code of conduct, the maintainers of the Firebase Cloud Functions User Data Protection Library project may take action, removing issues, comments, and PRs or blocking accounts as deemed appropriate.
-
-If you are subject to or witness unacceptable behavior, or have any other concerns, please drop us a line at  [firebase-function-samples-conduct@google.com](mailto:firebase-function-samples-conduct@google.com).
-
 ##### Acknowledgement:
 This CoC is based on the Contributor Covenant by Coraline Ada Ehmke ([CoralineAda](https://github.com/CoralineAda)).
 
-## <a name="question"></a> Got a Question or Problem?
+## <a name="question"></a> Have a Question or Problem?
 
 If you have questions about how to use the Firebase Cloud Functions Templates Library, please direct these to [StackOverflow][stackoverflow] and use the `firebase` tag. We are also available on GitHub issues.
 

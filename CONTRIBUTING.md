@@ -4,7 +4,6 @@ We'd love for you to contribute to our source code and to make the Firebase Clou
 
  - [Question or Problem?](#question)
  - [Issues and Bugs](#issue)
- - [Feature Requests](#feature)
  - [Submission Guidelines](#submit)
  - [Coding Rules](#rules)
  - [Signing the CLA](#cla)

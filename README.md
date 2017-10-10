@@ -3,28 +3,29 @@
 **This library is an early alpha release. Expect and please report bugs.**
 
 See the [Function Samples](https://github.com/firebase/functions-samples)
-repository for history of this project and other function examples
+repository for history of this project and other function examples.
 
 ### Table of Contents
-- [Project Overview](#overview)
+- [Project overview](#overview)
+- [Implementation overview](#implementation)
+- [How to deploy and test this function](#test)
+- [Understanding the wipeout rules](#wipeout-rules)
 - [How to use these functions in your Firebase app](#use)
-- [How to work on this project](#contribute)
+- [How to contribute to this project](#contribute)
 
-<a name="#overview"></a>
-## Project Overview
-
-Compliance with privacy regulations requires that developers ensure that a
-user's data is deleted when they delete their account.
+## <a name="overview"></a> Project Overview
 
 This library, created by [Dan Zhang](https://github.com/horseno), contains a
-FirebaseCloud Function triggered by account deletion. It wipes out all the data
-in the Firebase Realtime Database that belongs to the user that was deleted.
+FirebaseCloud Function triggered by account deletion (an `Auth.delete` event)
+that wipes out all the data in the Firebase Realtime Database that belonged to
+the deleted user.
 
-To determine what data should be deleted, the Cloud Function analyzes the app's
-Security Rules, and identifies any data that can only be written by a particular
-user.
+Compliance with privacy regulations requires that developers ensure that a
+user's data is deleted when they delete their account. To determine what data
+should be deleted, the Cloud Function analyzes the app's Security Rules, and
+identifies any data that can only be written by a particular user.
 
-For example, when a user authenticates, we write save personal data of the form:
+For example, when a user authenticates, we may save personal data of the form:
 
 ```
 /functions-project-12345
@@ -32,14 +33,13 @@ For example, when a user authenticates, we write save personal data of the form:
         $uid : "Some user data"
 ```
 
-And when the user delete their account a Function will trigger and automatically
+And when the user deletes their account a Function will automatically
 delete the corresponding user data in the realtime database.
 
 This library also includes a simple [demo app](public) showing how the Function
 works.
 
-<a name="#overview"></a>
-### Implementation overview
+### <a name="implementation"></a> Implementation overview
 
 See [`functions/wipeout.js`](functions/wipeout.js) for the data cleanup code.
 
@@ -65,8 +65,7 @@ Dependencies for this library are listed in
 [`functions/package.json`](functions/package.json).
 
 
-<a name="#test/">
-### Deploy and test
+### <a name="test"></a> Deploy and test
 
 This sample comes with a Function and web-based UI for testing the function.
 To configure it:
@@ -102,8 +101,7 @@ To configure it:
   has been deleted using the Firebase console.
 
 
-<a name="/wipeout_rules"></a>
-### Understanding the wipeout rules
+### <a name="wipeout-rules"></a> Understanding the wipeout rules
 
 The path string can use variable `$WIPEOUT_UID` which will be replaced by UID of
 the deleted user account when triggered.
@@ -165,8 +163,7 @@ library deletes the data and records the paths to the deleted data with a
 timestamp at `/wipeout/history/#WIPEOUT_UID` in the realtime database.
 
 
-<a name="#use"></a>
-##  How to add this library to your existing Firebase project
+## <a name="use"></a> How to add this library to your Firebase project
 The following instructions are the instructions to install both the wipeout
 library and the demo app that lives in the `public/` folder.
 
@@ -176,9 +173,9 @@ library and the demo app that lives in the `public/` folder.
 and therefore more reliable. For example, nest personal data under the `$uid`
 login token, and store group data such as members of a chat room, or users that
 have stared a post, outside a user-specific key.
-- [ ] Initialize Firebase Functions (instructions [here]()).
+- [ ] Initialize Firebase Functions, using [these instructions](https://firebase.google.com/docs/functions/get-started).
 
-Then Continue with the rules for existing projects.
+Continue with the rules for existing projects.
 
 <a name="existing"></a>
 ### To add this to existing projects:
@@ -283,7 +280,7 @@ Then Continue with the rules for existing projects.
 - [ ] Follow the instructions in the the command line to initialize and confirm
       the wipeout rules
 
-## <a name="#contribute"></a> How to contribute
+## <a name="contribute"></a> How to contribute
 
 If you'd like to  *contribute* to the library, or are just curious about how it
 is built, please see the overview [Design Doc](doc/design.md), the detailed

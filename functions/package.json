@@ -1,6 +1,7 @@
 {
   "name": "user-data-cleanup-functions",
   "description": "Cleanup the user data in the datastore upon account deletion",
+  "license": "Apache-2.0",
   "dependencies": {
     "deepcopy": "^0.6.3",
     "ejs": "^2.5.7",
@@ -21,5 +22,9 @@
     "mocha": "^3.4.2",
     "sinon": "^2.3.2",
     "sinon-stub-promise": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firebase/user-data-protection/"
   }
 }

@@ -1,6 +1,4 @@
-**This is not an official Google product**
-
-**This library is an early alpha release. Expect and please report bugs.**
+**This library is made available early; expect and please report bugs.**
 
 See the [Function Samples](https://github.com/firebase/functions-samples)
 repository for history of this project and other function examples.
@@ -289,3 +287,9 @@ explanation of [Auto Rules Extraction](doc/auto_rules_extraction.md).
 Before contributing, review the [contribution guidelines](CONTRIBUTING.md),
 including Code of Conduct it contains, and sign the Contributor License
 Agreement.
+
+---
+
+Released under the [Apache License](LICENSE).
+
+Disclaimer: This is not an official Google product.

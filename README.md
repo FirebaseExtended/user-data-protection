@@ -81,7 +81,7 @@ To configure it:
  your project in the list.
  1. Install dependencies locally by running: `cd functions; npm install; cd -`
  1. Run local tests using `cd functions; npm test`
- 1. Deploy your project using `firebase deploy`, anbd note the showWipeoutConfig
+ 1. Deploy your project using `firebase deploy`, and note the showWipeoutConfig
     URL printed out.
  1. Visit the showWipeoutConfig URL in a browser and Initialized the library for
     this database by clicking the "INITIALIZE" button.

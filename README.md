@@ -215,37 +215,36 @@ Continue with the rules for existing projects.
     }
   });
   ```
-- [ ] Add these dependencies to the `functions/package.json` file
-  ```json
-  {
-    "name": "user-data-cleanup-functions",
-    "description": "Delete user data from the datastore upon account deletion",
-    "dependencies": {
-      "deepcopy": "^0.6.3",
-      "ejs": "^2.5.7",
-      "firebase-admin": "^4.1.1",
-      "firebase-functions": "^0.5.1",
-      "jsep": "^0.3.0",
-      "request": "^2.81.0",
-      "request-promise": "^4.2.1",
-      "strip-json-comments": "^2.0.1"
-    },
+- [ ] Add dependencies to the `functions/package.json` by running `nmp install --save`:
+  ```shell
+    $ cd functions
+    $ npm install --save deepcopy@^0.6.6
+    $ npm install --save ejs@^2.5.7
+    $ npm install --save firebase-admin@^4.1.1
+    $ npm install --save firebase-functions@^0.5.1
+    $ npm install --save jsep@^0.3.0
+    $ npm install --save request@^2.81.0
+    $ npm install --save request-promise@^4.2.1
+    $ npm install --save strip-json-comments@^2.0.1
+   ```
+- [ ] Staying within the functions folder, install the development dependencies similarly:
+   ```shell
+   $ npm install --save-dev chai@<=3.5
+   $ npm install --save-dev chai-as-promised@^6.0.0
+   $ nmp install --save-dev mocha@^3.4.2
+   $ npm install --save-dev sinon@^2.3.2
+   $ npm install --save-dev sinon-stub-promise@^4.0.0
+   ```
+   and `cd -` to get back to the previous directory.
+- [ ] Open the `package.json` file and either add these two entries your existing `scripts`, or add this entire `scripts` section after the dependencies and devDependencies:
+    ```
     "scripts": {
       "test": "NODE_ENV=TEST mocha test/index_spec.js",
       "start": "node wipeout_init.js"
     },
-    "devDependencies": {
-      "chai": "<=3.5",
-      "chai-as-promised": "^6.0.0",
-      "mocha": "^3.4.2",
-      "sinon": "^2.3.2",
-      "sinon-stub-promise": "^4.0.0"
-    }
-  }
   ```
-- [ ] Run `cd function; npm install; cd -` to install new modules into the
-  `node_modules` folder
-- [ ] Add the following to the `firebase.json` file:
+
+- [ ] Add the following to the `firebase.json` file if it's not already there::
   ```json
   {
     "database": {
@@ -260,16 +259,17 @@ Continue with the rules for existing projects.
   }
   ```
 - [ ] Copy all the files in the `functions/` folder except `index.js`,
-  `package.json`, and `package-lock.json`:
-  - [ ] `access.js`
-  - [ ] `common.js`
-  - [ ] `eval_ref.js`
-  - [ ] `expression.js`
-  - [ ] `index.js`
-  - [ ] `parse_rule.js`
-  - [ ] `template_confirm.ejs`
-  - [ ] `template.ejs`
-  - [ ] `wipeout.js`
+  `package.json`, and `package-lock.json` into the `functions/` folder in your
+  own repo. If you
+  - [ ] `functions/access.js`
+  - [ ] `functions/common.js`
+  - [ ] `functions/eval_ref.js`
+  - [ ] `functions/expression.js`
+  - [ ] `functions/index.js`
+  - [ ] `functions/parse_rule.js`
+  - [ ] `functions/template_confirm.ejs`
+  - [ ] `functions/template.ejs`
+  - [ ] `functions/wipeout.js`
 
 
 - [ ] Copy the `public/` folder into the app

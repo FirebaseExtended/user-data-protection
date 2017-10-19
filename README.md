@@ -44,8 +44,8 @@ See [`functions/wipeout.js`](functions/wipeout.js) for the data cleanup code.
 When a user deletes their account, their data in the database will be deleted
 automatically according to `Wipeout Rules` that can either be
 
-- specified in the local file
-[`functions/wipeout_config.json`](functions/wipeout_conifg.json) or, if the file
+- specified in a local file named
+`functions/wipeout_config.json` or, if the file
 doesn't exist or doesn't contain a valid configuration object,
 - inferred from the Realtime Database authorization Rules.
 
@@ -91,7 +91,7 @@ To configure it:
 1. The format of wipeout rules are described in the next section. If the rules
   are correct, click the "CONFIRM DEPLOYMENT" button, or else change the local
   configuration file
-  [functions/wipeout_config.json](functions/wipeout_conifg.json) and redeploy.
+  `functions/wipeout_config.json` and redeploy.
   **Note a developer confirmation is required after every deployment.**
  1. Open the app using `firebase open hosting:site`, this will open a browser.
  1. Sign in using Google Sign-In and delete the account using

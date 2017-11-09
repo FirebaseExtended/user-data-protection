@@ -229,9 +229,9 @@ Continue with the rules for existing projects.
    ```
 - [ ] Staying within the functions folder, install the development dependencies similarly:
    ```shell
-   $ npm install --save-dev chai@<=3.5
+   $ npm install --save-dev chai@^3.5
    $ npm install --save-dev chai-as-promised@^6.0.0
-   $ nmp install --save-dev mocha@^3.4.2
+   $ npm install --save-dev mocha@^3.4.2
    $ npm install --save-dev sinon@^2.3.2
    $ npm install --save-dev sinon-stub-promise@^4.0.0
    ```

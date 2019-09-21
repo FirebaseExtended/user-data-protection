@@ -20,7 +20,7 @@ the deleted user.
 
 Compliance with privacy regulations requires that developers ensure that a
 user's data is deleted when they delete their account. To determine what data
-should be deleted, the Cloud Function analyzes the app's Security Rules, and
+should be deleted, the Cloud Function analyzes the app's Security Rules and
 identifies any data that can only be written by a particular user.
 
 For example, when a user authenticates, we may save personal data of the form:

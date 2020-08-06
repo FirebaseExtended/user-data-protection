@@ -3,6 +3,12 @@
 See the [Function Samples](https://github.com/firebase/functions-samples)
 repository for history of this project and other function examples.
 
+## Status
+
+![Status: Archived](https://img.shields.io/badge/Status-Archived-red)
+
+This sample is no longer actively maintained and is left here for reference only.
+
 ### Table of Contents
 - [Project overview](#overview)
 - [Implementation overview](#implementation)

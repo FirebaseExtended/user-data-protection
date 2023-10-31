@@ -4,7 +4,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "deepcopy": "^0.6.3",
-    "ejs": "^2.5.7",
+    "ejs": "^3.1.7",
     "firebase-admin": "^11.11.0",
     "firebase-functions": "^0.5.1",
     "jsep": "^0.3.0",
